@@ -8,8 +8,13 @@ const ALLOWED_HOST = 'api.tvmaze.com';
 const cache = new Map();
 
 function safeFetch(url) {
-  const { hostname } = new URL(url);
-  if (hostname !== ALLOWED_HOST) throw new Error(`Blocked request to untrusted host: ${hostname}`);
+  try {
+    const { hostname } = new URL(url);
+    if (hostname !== ALLOWED_HOST) throw new Error(`Blocked request to untrusted host: ${hostname}`);
+  } catch (e) {
+    // If URL parsing fails, treat as unsafe
+    throw new Error(`Invalid URL passed to safeFetch: ${e.message}`);
+  }
   return fetch(url);
 }
 
@@ -46,8 +51,8 @@ export function normalizeShow(raw) {
       : 'N/A',
     network: show.network?.name || show.webChannel?.name || 'Broadcasting Network',
     type: show.type || 'Scripted',
-    officialSite: show.officialSite || show.url || `https://www.tvmaze.com/shows/${show.id}`,
-    url: show.url || `https://www.tvmaze.com/shows/${show.id}`,
+    officialSite: show.officialSite || show.externals?.tvmaze?.url || `https://www.tvmaze.com/shows/${show.id}`,
+    url: show.externals?.tvmaze?.url || `https://www.tvmaze.com/shows/${show.id}`,
     schedule: show.schedule ? `${show.schedule.days?.join(', ') || ''} ${show.schedule.time || ''}`.trim() : ''
   };
 }
