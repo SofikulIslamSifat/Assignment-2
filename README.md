@@ -128,23 +128,6 @@ A responsive, high-performance **Movie & TV Show Explorer** web application buil
 
 ---
 
-## ☁️ Deployment Guide
-
-### Deploying to Vercel
-1. Push your project to a public GitHub repository.
-2. Log into [Vercel](https://vercel.com) and click **"Add New Project"**.
-3. Import your GitHub repository.
-4. Framework Preset will automatically detect **Vite**.
-5. Click **"Deploy"**. Your live URL will be active in seconds!
-
-### Deploying to Netlify
-1. Log into [Netlify](https://netlify.com) and select **"Add new site"** > **"Import an existing project"**.
-2. Connect your GitHub repository.
-3. Set **Build command** to `npm run build` and **Publish directory** to `dist`.
-4. Click **"Deploy Site"**.
-
----
-
 ## 📂 Project Structure
 
 ```
