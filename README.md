@@ -5,7 +5,7 @@ A responsive, high-performance **Movie & TV Show Explorer** web application buil
 ---
 
 ## 🌟 Live Demo & Repository
-- **Live Deployment:** [Deploy on Vercel or Netlify](#-deployment-guide)
+- **Live Deployment:** [movieexplorer-mu.vercel.app/](#-deployment-guide)
 - **Repository:** [https://github.com/SofikulIslamSifat/Assignment-2](https://github.com/SofikulIslamSifat/Assignment-2)
 
 ---
