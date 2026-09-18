@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import HeroBanner from './components/HeroBanner';
 import FeaturedSection from './components/FeaturedSection';
@@ -277,6 +278,9 @@ return (
 
       {/* Footer */}
       <Footer onNavigate={handleNavigate} />
+
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 }
