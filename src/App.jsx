@@ -52,15 +52,7 @@ export default function App() {
       }
     };
     window.addEventListener('hashchange', onHashChange);
-    if (isLoading && allShows.length === 0) {
-  return (
-    <div className="container" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div className="skeleton-card skeleton" style={{ width: '200px', height: '300px' }} />
-    </div>
-  );
-}
-
-return () => window.removeEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
   const handleNavigate = useCallback((page) => {
@@ -88,15 +80,7 @@ return () => window.removeEventListener('hashchange', onHashChange);
         }
       });
 
-    if (isLoading && allShows.length === 0) {
-  return (
-    <div className="container" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div className="skeleton-card skeleton" style={{ width: '200px', height: '300px' }} />
-    </div>
-  );
-}
-
-return () => {
+    return () => {
       isMounted = false;
     };
   }, []);
@@ -123,15 +107,7 @@ return () => {
         });
     }, 350);
 
-    if (isLoading && allShows.length === 0) {
-  return (
-    <div className="container" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div className="skeleton-card skeleton" style={{ width: '200px', height: '300px' }} />
-    </div>
-  );
-}
-
-return () => clearTimeout(timer);
+    return () => clearTimeout(timer);
   }, [searchTerm]);
 
   // Determine current active raw show list
