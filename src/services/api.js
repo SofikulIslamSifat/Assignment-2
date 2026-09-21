@@ -4,19 +4,7 @@
  */
 
 const BASE_URL = 'https://api.tvmaze.com';
-const ALLOWED_HOST = 'api.tvmaze.com';
 const cache = new Map();
-
-function safeFetch(url) {
-  let hostname;
-  try {
-    hostname = new URL(url).hostname;
-  } catch {
-    throw new Error('Invalid URL passed to safeFetch');
-  }
-  if (hostname !== ALLOWED_HOST) throw new Error('Blocked request to untrusted host');
-  return fetch(url);
-}
 
 /**
  * Normalizes a raw show object from TVMaze API
@@ -67,7 +55,8 @@ export async function fetchShows(page = 0) {
   }
 
   try {
-    const response = await safeFetch(`${BASE_URL}/shows?page=${page}`);
+    const page_safe = parseInt(page, 10) || 0;
+    const response = await fetch(`${BASE_URL}/shows?page=${page_safe}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch shows (Status: ${response.status})`);
     }
@@ -97,7 +86,7 @@ export async function searchShows(query) {
   }
 
   try {
-    const response = await safeFetch(`${BASE_URL}/search/shows?q=${encodeURIComponent(trimmed)}`);
+    const response = await fetch(`${BASE_URL}/search/shows?q=${encodeURIComponent(trimmed)}`);
     if (!response.ok) {
       throw new Error(`Failed to search shows (Status: ${response.status})`);
     }
