@@ -8,13 +8,13 @@ const ALLOWED_HOST = 'api.tvmaze.com';
 const cache = new Map();
 
 function safeFetch(url) {
+  let hostname;
   try {
-    const { hostname } = new URL(url);
-    if (hostname !== ALLOWED_HOST) throw new Error(`Blocked request to untrusted host: ${hostname}`);
-  } catch (e) {
-    // If URL parsing fails, treat as unsafe
-    throw new Error(`Invalid URL passed to safeFetch: ${e.message}`);
+    hostname = new URL(url).hostname;
+  } catch {
+    throw new Error('Invalid URL passed to safeFetch');
   }
+  if (hostname !== ALLOWED_HOST) throw new Error('Blocked request to untrusted host');
   return fetch(url);
 }
 
